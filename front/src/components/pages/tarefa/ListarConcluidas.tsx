@@ -2,17 +2,16 @@ import { useEffect, useState } from "react";
 import Tarefa from "../../../models/Tarefa";
 import axios from "axios";
 
-function ListarTarefas() {
+function ListarConcluidas() {
   const [tarefas, setTarefas] = useState<Tarefa[]>([]);
 
   useEffect(() => {
-    console.log("Componente ListarTarefas carregado");
-    buscarTarefasAPI();
+    buscarConcluidas();
   }, []);
 
-  async function buscarTarefasAPI() {
+  async function buscarConcluidas() {
     try {
-      const resposta = await axios.get("http://localhost:5000/api/tarefas/listar");
+      const resposta = await axios.get("http://localhost:5000/api/tarefas/concluidas");
       setTarefas(resposta.data);
     } catch (error) {
       console.log("Erro na requisição: " + error);
@@ -20,27 +19,15 @@ function ListarTarefas() {
     }
   }
 
-  async function alterarStatus(id : string) {
-    if (!id) return;
-    try {
-      await axios.put(`http://localhost:5000/api/tarefas/alterar/${id}`);
-      buscarTarefasAPI();
-    } catch (error) {
-      console.log("Erro ao alterar status: " + error);
-    }
-  }
-
   return (
-    <div id="listar_tarefas">
-      <h1>Listar Tarefas</h1>
+    <div>
+      <h1>Listar Tarefas Concluídas</h1>
       <table border={1} cellPadding={6} cellSpacing={0} style={{ width: "100%" }}>
         <thead>
             <tr>
             <th>#</th>
             <th>Título</th>
             <th>Status</th>
-            <th>Criado Em</th>
-            <th>Alterar Status</th>
             </tr>
         </thead>
 
@@ -50,16 +37,12 @@ function ListarTarefas() {
                 <td>{tarefa.id}</td>
                 <td>{tarefa.titulo}</td>
                 <td>{tarefa.status}</td>
-                <td>{tarefa.criadoEm}</td>
-                <td>
-                <button onClick={() => alterarStatus(tarefa.id!)}>Alterar</button>
-                </td>
             </tr>
             ))}
         </tbody>
-      </table>
+        </table>
     </div>
   );
 }
 
-export default ListarTarefas;
+export default ListarConcluidas;
