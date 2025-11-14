@@ -21,7 +21,7 @@ var app = builder.Build();
 app.MapGet("/", () => "Matheus Miguel Barbosa");
 
 //ENDPOINTS DE TAREFA
-//GET: http://localhost:5273/api/tarefas/listar
+//GET: http://localhost:5000/api/tarefas/listar
 app.MapGet("/api/tarefas/listar", ([FromServices] AppDataContext ctx) =>
 {
     if (ctx.Tarefas.Any())
@@ -31,7 +31,7 @@ app.MapGet("/api/tarefas/listar", ([FromServices] AppDataContext ctx) =>
     return Results.NotFound("Nenhuma tarefa encontrada");
 });
 
-//POST: http://localhost:5273/api/tarefas/cadastrar
+//POST: http://localhost:5000/api/tarefas/cadastrar
 app.MapPost("/api/tarefas/cadastrar", ([FromServices] AppDataContext ctx, [FromBody] Tarefa tarefa) =>
 {
     ctx.Tarefas.Add(tarefa);
@@ -39,7 +39,7 @@ app.MapPost("/api/tarefas/cadastrar", ([FromServices] AppDataContext ctx, [FromB
     return Results.Created("", tarefa);
 });
 
-//PUT: http://localhost:5273/tarefas/alterar/{id}
+//PUT: http://localhost:5000/tarefas/alterar/{id}
 app.MapPut("/api/tarefas/alterar/{id}", ([FromServices] AppDataContext ctx, [FromRoute] string id) =>
 {
     var tarefa = ctx.Tarefas.Find(id);
@@ -59,7 +59,7 @@ app.MapPut("/api/tarefas/alterar/{id}", ([FromServices] AppDataContext ctx, [Fro
     return Results.Ok(tarefa);
 });
 
-//GET: http://localhost:5273/tarefas/naoconcluidas
+//GET: http://localhost:5000/tarefas/naoconcluidas
 app.MapGet("/api/tarefas/naoconcluidas", ([FromServices] AppDataContext ctx) =>
 {
     var tarefas = ctx.Tarefas
@@ -72,7 +72,7 @@ app.MapGet("/api/tarefas/naoconcluidas", ([FromServices] AppDataContext ctx) =>
     return Results.Ok(tarefas);
 });
 
-//GET: http://localhost:5273/tarefas/concluidas
+//GET: http://localhost:5000/tarefas/concluidas
 app.MapGet("/api/tarefas/concluidas", ([FromServices] AppDataContext ctx) =>
 {
     var tarefas = ctx.Tarefas
