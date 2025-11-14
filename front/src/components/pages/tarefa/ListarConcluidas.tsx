@@ -33,8 +33,8 @@ function ListarConcluidas() {
 
         <tbody>
             {tarefas.map((tarefa) => (
-            <tr key={tarefa.id}>
-                <td>{tarefa.id}</td>
+            <tr key={tarefa.tarefaId}>
+                <td>{tarefa.tarefaId}</td>
                 <td>{tarefa.titulo}</td>
                 <td>{tarefa.status}</td>
             </tr>

@@ -1,5 +1,5 @@
 export default interface Tarefa {
-  id?: string;
+  tarefaId?: string;
   titulo: string;
   status?: string;
   criadoEm?: string;

@@ -46,13 +46,13 @@ function ListarTarefas() {
 
         <tbody>
             {tarefas.map((tarefa) => (
-            <tr key={tarefa.id}>
-                <td>{tarefa.id}</td>
+            <tr key={tarefa.tarefaId}>
+                <td>{tarefa.tarefaId}</td>
                 <td>{tarefa.titulo}</td>
                 <td>{tarefa.status}</td>
                 <td>{tarefa.criadoEm}</td>
                 <td>
-                <button onClick={() => alterarStatus(tarefa.id!)}>Alterar</button>
+                <button onClick={() => alterarStatus(tarefa.tarefaId!)}>Alterar</button>
                 </td>
             </tr>
             ))}
